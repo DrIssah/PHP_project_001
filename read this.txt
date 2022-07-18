@@ -1,0 +1,311 @@
+1 make data base in xampp, name it " library"
+
+==========copy this=====
+-- phpMyAdmin SQL Dump
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: Apr 10, 2019 at 03:07 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `library`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `FullName` varchar(100) DEFAULT NULL,
+  `AdminEmail` varchar(120) DEFAULT NULL,
+  `UserName` varchar(100) NOT NULL,
+  `Password` varchar(100) NOT NULL,
+  `updationDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `photo` varchar(50) NOT NULL DEFAULT 'admdefault.jpg'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `FullName`, `AdminEmail`, `UserName`, `Password`, `updationDate`, `photo`) VALUES
+(1, 'Rami', 'rami@montclair.edu', 'admin', 'rami1988', '2019-03-25 00:57:07', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `availabestudentid`
+--
+
+CREATE TABLE `availabestudentid` (
+  `ID` int(100) NOT NULL,
+  `StudentId` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `availabestudentid`
+--
+
+INSERT INTO `availabestudentid` (`ID`, `StudentId`) VALUES
+(1, 's1'),
+(2, 's2'),
+(3, 's3');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblauthors`
+--
+
+CREATE TABLE `tblauthors` (
+  `id` int(11) NOT NULL,
+  `AuthorName` varchar(159) DEFAULT NULL,
+  `creationDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tblauthors`
+--
+
+INSERT INTO `tblauthors` (`id`, `AuthorName`, `creationDate`, `UpdationDate`) VALUES
+(1, 'Comar', '2019-03-21 04:11:27', NULL),
+(2, 'Fometo', '2019-03-21 04:11:54', NULL),
+(3, 'Mani', '2019-03-21 04:12:11', NULL),
+(4, 'Jony', '2019-03-21 04:12:51', NULL),
+(5, 'Harry P ', '2019-03-24 03:43:20', NULL),
+(6, 'George', '2019-03-24 03:43:40', NULL),
+(7, 'Claire', '2019-03-24 03:44:19', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblbooks`
+--
+
+CREATE TABLE `tblbooks` (
+  `bkid` int(11) NOT NULL,
+  `BookName` varchar(255) DEFAULT NULL,
+  `CatId` int(11) DEFAULT NULL,
+  `AuthorId` int(11) DEFAULT NULL,
+  `ISBNNumber` int(11) DEFAULT NULL,
+  `BookPrice` int(11) DEFAULT NULL,
+  `Status` int(10) NOT NULL,
+  `RegDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `Reserved` varchar(20) NOT NULL DEFAULT 'No',
+  `ReservationTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `Reserver` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tblbooks`
+--
+
+INSERT INTO `tblbooks` (`bkid`, `BookName`, `CatId`, `AuthorId`, `ISBNNumber`, `BookPrice`, `Status`, `RegDate`, `Reserved`, `ReservationTime`, `Reserver`) VALUES
+(2, ' Successful Business', 2, 2, 23516711, 101, 0, '2019-03-21 04:22:46', 'No', '0000-00-00 00:00:00', 'Null'),
+(3, 'Rock Violin ', 4, 3, 321421143, 11, 0, '2019-03-21 04:29:23', 'No', '0000-00-00 00:00:00', 'Null'),
+(4, 'Computer Languges', 1, 4, 356346347, 111, 0, '2019-03-21 04:34:28', 'No', '0000-00-00 00:00:00', 'Null'),
+(5, 'Java in Practice ', 1, 4, 342342536, 12, 0, '2019-03-24 03:40:12', 'No', '0000-00-00 00:00:00', 'Null'),
+(6, 'Music in calss', 4, 3, 5235435, 123, 0, '2019-03-24 03:42:01', 'No', '0000-00-00 00:00:00', 'Null'),
+(7, 'Printing in theory', 3, 7, 8657895, 17, 1, '2019-03-24 03:46:06', 'No', '0000-00-00 00:00:00', 'Null'),
+(8, 'C++ wizard', 1, 5, 4532623, 7, 0, '2019-03-24 03:47:34', 'No', '0000-00-00 00:00:00', 'Null');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblcategory`
+--
+
+CREATE TABLE `tblcategory` (
+  `id` int(11) NOT NULL,
+  `CategoryName` varchar(150) DEFAULT NULL,
+  `CreationDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdationDate` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tblcategory`
+--
+
+INSERT INTO `tblcategory` (`id`, `CategoryName`, `CreationDate`, `UpdationDate`) VALUES
+(1, 'College of Science and Mathematics', '2019-03-21 04:00:53', '2019-03-21 05:04:31'),
+(2, 'Feliciano School of Business', '2019-03-21 04:01:15', '2019-03-21 05:04:38'),
+(3, 'College of the Arts', '2019-03-21 04:03:25', '2019-03-21 05:04:48'),
+(4, 'John J. Cali School of Music', '2019-03-21 04:03:48', '2019-03-21 05:04:55'),
+(5, 'School of Nursing', '2019-03-21 04:06:50', '2019-03-21 05:07:04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblissuedbookdetails`
+--
+
+CREATE TABLE `tblissuedbookdetails` (
+  `id` int(11) NOT NULL,
+  `BookId` int(11) DEFAULT NULL,
+  `StudentID` varchar(150) DEFAULT NULL,
+  `IssuesDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `ReturnDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `ReturnStatus` int(1) DEFAULT NULL,
+  `fine` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tblissuedbookdetails`
+--
+
+INSERT INTO `tblissuedbookdetails` (`id`, `BookId`, `StudentID`, `IssuesDate`, `ReturnDate`, `ReturnStatus`, `fine`) VALUES
+(1, 8, 's1', '2019-04-02 04:22:23', '2019-04-02 14:09:50', 0, NULL),
+(2, 8, 's1', '2019-04-02 04:54:58', '2019-04-02 14:09:59', 0, NULL),
+(3, 8, 's1', '2019-04-02 04:55:54', '2019-04-02 14:10:42', 0, NULL),
+(4, 6, 's2', '2019-04-02 05:00:55', '2019-04-02 14:10:37', 0, NULL),
+(5, 7, 's1', '2019-04-02 14:12:17', '2019-04-13 16:04:17', 1, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_students`
+--
+
+CREATE TABLE `tbl_students` (
+  `id` int(11) NOT NULL,
+  `StudentId` varchar(100) DEFAULT NULL,
+  `FullName` varchar(120) DEFAULT NULL,
+  `Email` varchar(120) DEFAULT NULL,
+  `MobileNumber` char(11) DEFAULT NULL,
+  `Password` varchar(120) DEFAULT NULL,
+  `Status` int(1) DEFAULT NULL,
+  `UpdateDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `RegistrationDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `photo` varchar(50) NOT NULL DEFAULT 'default.png'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_students`
+--
+
+INSERT INTO `tbl_students` (`id`, `StudentId`, `FullName`, `Email`, `MobileNumber`, `Password`, `Status`, `UpdateDate`, `RegistrationDate`, `photo`) VALUES
+(1, 's1', 'ismail', 'ward@montclair.edu', '1112223333', '1234567', NULL, '2019-04-02 14:00:13', '2019-03-21 06:53:07', 'default.png'),
+(2, 's2', 'jhon S', 'jhon@montclair.edu', '9872345555', '12345678', NULL, NULL, '2019-03-25 00:55:39', 'default.png'),
+(3, 's3', 'fahad al', 'fahd@montclair.edu', '5567668885', '123456789', NULL, NULL, '2019-03-25 00:56:22', 'default.png');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `availabestudentid`
+--
+ALTER TABLE `availabestudentid`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `StudentId` (`StudentId`);
+
+--
+-- Indexes for table `tblauthors`
+--
+ALTER TABLE `tblauthors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tblbooks`
+--
+ALTER TABLE `tblbooks`
+  ADD PRIMARY KEY (`bkid`);
+
+--
+-- Indexes for table `tblcategory`
+--
+ALTER TABLE `tblcategory`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tblissuedbookdetails`
+--
+ALTER TABLE `tblissuedbookdetails`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_students`
+--
+ALTER TABLE `tbl_students`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `StudentId` (`StudentId`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `availabestudentid`
+--
+ALTER TABLE `availabestudentid`
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tblauthors`
+--
+ALTER TABLE `tblauthors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `tblbooks`
+--
+ALTER TABLE `tblbooks`
+  MODIFY `bkid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `tblcategory`
+--
+ALTER TABLE `tblcategory`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tblissuedbookdetails`
+--
+ALTER TABLE `tblissuedbookdetails`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tbl_students`
+--
+ALTER TABLE `tbl_students`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+========end the copy========
+
+
+
+2 make super user, name it "library_user"
